@@ -6,7 +6,7 @@ from pathlib import Path
 
 class Reader(ABC):
     """
-    Абстрактный класс, который показывает логику работу ридеров
+    Абстрактный класс, который показывает работу ридеров
     """
 
     def __init__(self, filepath: str | Path):
@@ -17,7 +17,7 @@ class Reader(ABC):
     def read(self) -> Iterator[Record]:
         """
         Абстрактный метод
-        Должен возвращать итератор по объектам типа Record (последовательности, выравнивания или варианты)
+        Должен возвращать итератор по объектам типа Record
         """
         pass
 
@@ -36,7 +36,7 @@ class Reader(ABC):
 
 class SequenceReader(Reader):
     """
-    Абстрактный класс, который показывает логику работы ридеров FASTA и FASTQ
+    Абстрактный класс, для FASTA и FASTQ
     """
 
     def __init__(self, filepath: str | Path):
@@ -65,7 +65,7 @@ class SequenceReader(Reader):
 
     def close(self):
         """
-        Закрывает открытый файл (если он был открыт).
+        Закрывает открытый файл
         """
         if self.file and not self.file.closed:
             self.file.close()
@@ -75,7 +75,7 @@ class SequenceReader(Reader):
     def get_sequence(self, seq: str, id: str) -> SequenceRecord:
         """
         Создаёт объект SequenceRecord из идентификатора и последовательности.
-        Может добавлять качество (в FASTQ) или пропускать его (в FASTA).
+        Может добавлять качество или пропускать его.
         """
         pass
 
