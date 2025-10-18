@@ -2,7 +2,7 @@ from pathlib import Path
 from sam import SamReader
 
 # Открываем SAM-файл
-sam_path = Path("team-project/Col0_C1.100k.sam")
+sam_path = Path("Col0_C1.100k.sam") #сюда надо свой файл
 with SamReader(sam_path) as reader:
     # Автоматически разбираем заголовок
     reader._parse_header()
