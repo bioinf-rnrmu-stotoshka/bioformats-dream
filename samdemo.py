@@ -25,6 +25,6 @@ def test_sam(file_path):
 
 if __name__ == "__main__":
     # Укажи путь к своему SAM файлу
-    sam_file = "Col0_C1.100k.sam"  # поменяй на свой SAM
+    sam_file = "Сюда свой файл sam"  # поменяй на свой SAM
     
     test_sam(sam_file)
