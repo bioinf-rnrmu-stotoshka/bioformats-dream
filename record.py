@@ -1,6 +1,6 @@
 class Record:
     """
-    Класс, хранящий биологическую информацию
+    Класс, хранящий биологическую последовательность и информацию
     """
 
     def __init__(self, id: str):
@@ -12,7 +12,7 @@ class Record:
 
 class SequenceRecord(Record):
     """
-    Для FASTA и FASTQ
+    FASTQ FASTA
     """
 
     def __init__(self, id: str, sequence: str, quality: list[int] | None = None):
@@ -23,7 +23,7 @@ class SequenceRecord(Record):
 
 class AlignmentRecord(Record):
     """
-    Для SAM
+    SAM
     """
 
     def __init__(self, id: str, chrom: str, start: int, cigar: str, mapq: int):
@@ -36,7 +36,7 @@ class AlignmentRecord(Record):
 
 class VariantRecord(Record):
     """
-    Для VCF
+    VCF
     """
 
     def __init__(self, chrom: str, pos: int, ref: str, alt: str, info: dict):
