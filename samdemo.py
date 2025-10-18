@@ -1,30 +1,35 @@
-# test_run.py
+from pathlib import Path
 from sam import SamReader
 
-def test_sam(file_path):
-    """Быстрая проверка SAM ридера"""
-    print("Testing SAM reader...")
-    try:
-        with SamReader(file_path) as reader:
-            # Базовые методы
-            header = reader.get_header()
-            count = reader.count_alignments()
-            chroms = reader.get_chromosomes()
-            
-            print(f"Header: {len(header)} lines")
-            print(f"Alignments: {count}")
-            print(f"Chromosomes: {chroms[:3]}")  # первые 3
-            
-            # Первая запись
-            for rec in reader.read():
-                print(f"First record: {rec.chrom}:{rec.start}")
-                break
-                
-    except Exception as e:
-        print(f"SAM Error: {e}")
+# Открываем SAM-файл
+sam_path = Path("team-project/Col0_C1.100k.sam")
+with SamReader(sam_path) as reader:
+    # Автоматически разбираем заголовок
+    reader._parse_header()
 
-if __name__ == "__main__":
-    # Укажи путь к своему SAM файлу
-    sam_file = "Сюда свой файл sam"  # поменяй на свой SAM
-    
-    test_sam(sam_file)
+    # Получаем и выводим заголовок 
+    print("\n=== Заголовки SAM-файла ===")
+    header = reader.get_header()
+    for tag, entries in header.items():
+        print(f"{tag}:")
+        # Убираем дубликаты и сортируем
+        for line in sorted(set(entries)):
+            print(f"  {line}")
+
+    # Получаем количество выравниваний
+    total = reader.count_alignments()
+    print(f"\n=== Общее количество выравниваний: {total}")
+
+    # Статистика по хромосомам 
+    print("\n=== Статистика по хромосомам ===")
+    df_stats = reader.stats_by_chromosome()
+    print(df_stats)
+
+    # Получаем выравнивания в определённом регионе ===
+    chrom = "1"
+    start = 10000
+    end = 20000
+
+    print(f"\n=== Выравнивания в регионе {chrom}:{start}-{end} ===")
+    for rec in reader.filter_by_region(chrom, start, end):
+        print(f"{rec.id}\t{rec.chrom}\t{rec.start}\t{rec.end}\t{rec.cigar}")
