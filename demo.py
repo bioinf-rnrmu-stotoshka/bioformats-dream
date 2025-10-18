@@ -1,5 +1,5 @@
 # test_run.py
-from sam_reader import SamReader
+from sam import SamReader
 
 def test_sam(file_path):
     """Быстрая проверка SAM ридера"""
