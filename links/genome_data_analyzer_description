@@ -1,0 +1,2000 @@
+<!doctype html>
+<html class="no-js" lang="ru" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Алфавитный указатель" href="genindex.html"><link rel="search" title="Поиск" href="search.html"><link rel="next" title="Графики" href="plots.html"><link rel="prev" title="Анализатор последовательностей" href="sequence_data_analyzer.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Анализатор данных генома - документация Bioformats Dream 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">документация Bioformats Dream 1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">документация Bioformats Dream 1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Поиск" name="q" aria-label="Поиск">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sequence_data_analyzer.html">Анализатор последовательностей</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Анализатор данных генома</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plots.html">Графики</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uml_diagram.html">UML Диаграмма отношения классов в программе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact_information.html">Контактная информация</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/genome_data_analyzer.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="id1">
+<h1>Анализатор данных генома<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="sam">
+<h2>Анализатор файлов в формате SAM<a class="headerlink" href="#sam" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Данный анализатор предназначен для работы с данными генома в формате SAM. Он анализирует SAM файл и выводит следующие данные о файле:</p>
+<ul class="simple">
+<li><p>заголовок и информация по отдельным группам заголовков</p></li>
+<li><p>количество выравниваний</p></li>
+<li><p>статистику “количество выравниваний - хромосома”</p></li>
+<li><p>выравнивания, лежащие в определенном геномном отрезке</p></li>
+</ul>
+<dl class="py class" id="module-abstract_sam">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_sam.</span></span><span class="sig-name descname"><span class="pre">GenomicDataReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_sam.Reader" title="abstract_sam.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a></p>
+<p>Абстрактный класс для ридеров структурированных геномных данных.</p>
+<p>Предназначен для форматов SAM, VCF и других, содержащих аннотированные
+геномные варианты или выравнивания. Поддерживает работу с хромосомами,
+регионами и фильтрацию записей.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader._header_parsed">
+<span class="sig-name descname"><span class="pre">_header_parsed</span></span><a class="headerlink" href="#abstract_sam.GenomicDataReader._header_parsed" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Флаг, указывающий был ли распарсен заголовок</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader._chromosomes">
+<span class="sig-name descname"><span class="pre">_chromosomes</span></span><a class="headerlink" href="#abstract_sam.GenomicDataReader._chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список хромосом, обнаруженных в файле</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="simple">
+<dt>Inherits:</dt><dd><p>Reader: Базовый класс ридера</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Закрывает файл и сбрасывает состояние парсера.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.filter_records">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><span class="pre">RecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.filter_records"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.filter_records" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Фильтрация записей по различным критериям.</p>
+<p>Конкретные критерии фильтрации зависят от формата файла и должны
+быть реализованы в дочерних классах.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**filters</strong> – Ключевые аргументы с критериями фильтрации.
+Пример: quality=20, type=“SNV“, chromosome=“chr1“</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Итератор отфильтрованных записей</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При некорректных критериях фильтрации</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.get_chromosome_length">
+<span class="sig-name descname"><span class="pre">get_chromosome_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.get_chromosome_length"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.get_chromosome_length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить длину хромосомы (если доступно из заголовка).</p>
+<p>Базовая реализация возвращает None. Должна быть переопределена
+в дочерних классах, если информация о длинах хромосом доступна.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chrom</strong> – Идентификатор хромосомы</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Длина хромосомы в парах оснований или 0 если неизвестно</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.get_chromosomes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.get_chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список хромосом, представленных в файле.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Список идентификаторов хромосом (например, [„chr1“, „chr2“, …])</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.get_records_in_region">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_records_in_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><span class="pre">RecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.get_records_in_region"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.get_records_in_region" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает записи, попадающие в указанный геномный регион.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Идентификатор хромосомы</p></li>
+<li><p><strong>start</strong> – Начальная позиция региона (включительно, 1-based)</p></li>
+<li><p><strong>end</strong> – Конечная позиция региона (включительно, 1-based)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Итератор записей в указанном регионе</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При некорректных координатах или неизвестной хромосоме</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.get_statistics"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.get_statistics" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает базовую статистику по файлу.</p>
+<p>Должна быть расширена в дочерних классах для предоставления
+специфичной для формата статистики.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Словарь со статистикой, содержащий:</dt><dd><ul class="simple">
+<li><p>file_path (str): Путь к файлу</p></li>
+<li><p>file_size (int): Размер файла в байтах</p></li>
+<li><p>chromosomes (List[str]): Список хромосом</p></li>
+<li><p>chromosome_count (int): Количество хромосом</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><span class="pre">RecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Чтение записей с пропуском заголовочных строк.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор по объектам Record</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Record</em> – Объекты, представляющие геномные записи (варианты, выравнивания)</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При нарушении формата данных</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.GenomicDataReader.validate_coordinate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/abstract_sam.html#GenomicDataReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.GenomicDataReader.validate_coordinate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет корректность координат.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Идентификатор хромосомы</p></li>
+<li><p><strong>pos</strong> – Позиция на хромосоме (1-based)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True если координаты корректны, иначе False</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sam.Reader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_sam.</span></span><span class="sig-name descname"><span class="pre">Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#Reader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.Reader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный базовый класс для всех ридеров геномных данных.</p>
+<p>Предоставляет общий интерфейс и базовую функциональность для чтения
+файлов различных форматов. Реализует контекстный менеджер для безопасной
+работы с файлами.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_sam.Reader.filepath">
+<span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#abstract_sam.Reader.filepath" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Путь к файлу для чтения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_sam.Reader.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#abstract_sam.Reader.file" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Файловый объект, открытый для чтения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FileIO | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.Reader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#Reader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.Reader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Безопасно закрывает файл, если он открыт.</p>
+<p>Метод идемпотентен - многократный вызов не вызывает ошибок.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.Reader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><span class="pre">RecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#Reader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.Reader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Абстрактный метод для чтения записей из файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор, возвращающий объекты Record</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-odd">Исключение<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>IOError</strong> – При ошибках чтения файла</p></li>
+<li><p><strong>ValueError</strong> – При ошибках парсинга данных</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sam.SequenceReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_sam.</span></span><span class="sig-name descname"><span class="pre">SequenceReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#SequenceReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.SequenceReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_sam.Reader" title="abstract_sam.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a></p>
+<p>Абстрактный класс для ридеров последовательностей (FASTA, FASTQ).</p>
+<p>Предназначен для работы с файлами, содержащими биологические
+последовательности (нуклеотидные или аминокислотные).</p>
+<dl class="simple">
+<dt>Inherits:</dt><dd><p>Reader: Базовый класс ридера</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.SequenceReader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_sam.html#SequenceReader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.SequenceReader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Закрывает открытый файл.</p>
+<p>Рекомендуется использовать контекстный менеджер (with)
+для автоматического управления ресурсами.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.SequenceReader.get_sequence">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#record_sam.SequenceRecordSam" title="record_sam.SequenceRecordSam"><span class="pre">SequenceRecordSam</span></a></span></span><a class="reference internal" href="_modules/abstract_sam.html#SequenceReader.get_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.SequenceReader.get_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создаёт объект SequenceRecord из идентификатора и последовательности.</p>
+<p>В зависимости от формата (FASTA/FASTQ) может добавлять дополнительную
+информацию, такую как качество последовательности.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> – Строка с последовательностью (нуклеотиды или аминокислоты)</p></li>
+<li><p><strong>id</strong> – Идентификатор последовательности</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Объект с последовательностью и метаданными</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SequenceRecord</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Если последовательность содержит некорректные символы</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.SequenceReader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.SequenceRecordSam" title="record_sam.SequenceRecordSam"><span class="pre">SequenceRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_sam.html#SequenceReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.SequenceReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Абстрактный метод для чтения последовательностей из файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор объектов SequenceRecord</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[SequenceRecord]</p>
+</dd>
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>SequenceRecord</em> – Объекты, содержащие последовательности и метаданные</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – При нарушении формата файла</p></li>
+<li><p><strong>IOError</strong> – При ошибках чтения файла</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sam.SequenceReader.validate_sequence">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/abstract_sam.html#SequenceReader.validate_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_sam.SequenceReader.validate_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет корректность последовательности.</p>
+<p>Валидация зависит от типа последовательности (ДНК, РНК, белок).
+Проверяет допустимые символы и возможные дополнительные правила.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seq</strong> – Последовательность для валидации</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True если последовательность корректна, иначе False</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-record_sam">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_sam.</span></span><span class="sig-name descname"><span class="pre">AlignmentRecordSam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cigar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_sam.html#AlignmentRecordSam"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_sam.AlignmentRecordSam" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordSam</span></code></a></p>
+<p>Класс для хранения записей выравнивания в формате SAM/BAM.</p>
+<p>Содержит информацию о позиции выравнивания последовательности
+на референсный геном и параметрах качества выравнивания.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.chrom">
+<span class="sig-name descname"><span class="pre">chrom</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.chrom" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Название хромосомы/контига референсного генома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция начала выравнивания (0-based индексация)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.cigar">
+<span class="sig-name descname"><span class="pre">cigar</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.cigar" title="Ссылка на это определение">¶</a></dt>
+<dd><p>CIGAR строка, описывающая соответствие между последовательностью
+и референсом (M - match, I - insertion, D - deletion и т.д.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.mapq">
+<span class="sig-name descname"><span class="pre">mapq</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.mapq" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Качество выравнивания (Mapping Quality)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.end" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция конца выравнивания (вычисляется автоматически)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.AlignmentRecordSam.flag">
+<span class="sig-name descname"><span class="pre">flag</span></span><a class="headerlink" href="#record_sam.AlignmentRecordSam.flag" title="Ссылка на это определение">¶</a></dt>
+<dd><p>SAM флаг выравнивания (по умолчанию 0)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aln</span> <span class="o">=</span> <span class="n">AlignmentRecordSam</span><span class="p">(</span><span class="s2">&quot;read1&quot;</span><span class="p">,</span> <span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;50M&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aln</span><span class="p">)</span>
+<span class="go">&lt;AlignmentRecordSam id=read1, chr1:1000-1050, MAPQ=60, FLAG=0&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_sam.RecordSam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_sam.</span></span><span class="sig-name descname"><span class="pre">RecordSam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_sam.html#RecordSam"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_sam.RecordSam" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Базовый класс для хранения биологических данных с идентификатором.</p>
+<p>Используется как родительский класс для различных типов биологических записей.
+Содержит минимальную общую информацию - идентификатор записи.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.RecordSam.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#record_sam.RecordSam.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Уникальный идентификатор записи в исходном файле данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">RecordSam</span><span class="p">(</span><span class="s2">&quot;seq1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+<span class="go">&lt;RecordSam id=seq1&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_sam.SequenceRecordSam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_sam.</span></span><span class="sig-name descname"><span class="pre">SequenceRecordSam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_sam.html#SequenceRecordSam"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_sam.SequenceRecordSam" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordSam</span></code></a></p>
+<p>Класс для хранения последовательностей в форматах FASTA/FASTQ.</p>
+<p>Наследует от Record и добавляет информацию о биологической
+последовательности и качестве оснований.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.SequenceRecordSam.sequence">
+<span class="sig-name descname"><span class="pre">sequence</span></span><a class="headerlink" href="#record_sam.SequenceRecordSam.sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Биологическая последовательность (нуклеотиды или аминокислоты)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.SequenceRecordSam.quality">
+<span class="sig-name descname"><span class="pre">quality</span></span><a class="headerlink" href="#record_sam.SequenceRecordSam.quality" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список значений качества для каждого символа последовательности
+в формате Phred (только для FASTQ). None для FASTA записей.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<p>FASTA запись:
+&gt;&gt;&gt; seq_rec = SequenceRecordSam(«seq1», «ATCG»)
+&gt;&gt;&gt; print(seq_rec.sequence)
+ATCG</p>
+<p>FASTQ запись:
+&gt;&gt;&gt; qual = [40, 40, 39, 38]
+&gt;&gt;&gt; fastq_rec = SequenceRecordSam(«read1», «ATCG», qual)
+&gt;&gt;&gt; print(fastq_rec.quality)
+[40, 40, 39, 38]</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_sam.</span></span><span class="sig-name descname"><span class="pre">VariantRecordSam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_sam.html#VariantRecordSam"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_sam.VariantRecordSam" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_sam.RecordSam" title="record_sam.RecordSam"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordSam</span></code></a></p>
+<p>Класс для хранения генетических вариантов в формате VCF.</p>
+<p>Содержит информацию о позиции варианта, референсном и альтернативном
+аллелях, а также дополнительную информацию в формате словаря.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam.chrom">
+<span class="sig-name descname"><span class="pre">chrom</span></span><a class="headerlink" href="#record_sam.VariantRecordSam.chrom" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Название хромосомы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#record_sam.VariantRecordSam.pos" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция варианта (1-based)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam.ref">
+<span class="sig-name descname"><span class="pre">ref</span></span><a class="headerlink" href="#record_sam.VariantRecordSam.ref" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Референсный аллель</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam.alt">
+<span class="sig-name descname"><span class="pre">alt</span></span><a class="headerlink" href="#record_sam.VariantRecordSam.alt" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Альтернативный аллель</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_sam.VariantRecordSam.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#record_sam.VariantRecordSam.info" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Словарь с дополнительной информацией о варианте
+(соответствует полю INFO в VCF)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;DP&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;AF&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var</span> <span class="o">=</span> <span class="n">VariantRecord</span><span class="p">(</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="mi">123456</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="go">&lt;VariantRecordSam chr1:123456 A&gt;T&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sam_analyzer">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sam_analyzer.</span></span><span class="sig-name descname"><span class="pre">SamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_sam.GenomicDataReader" title="abstract_sam.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Парсер SAM-файлов для работы с данными геномных выравниваний.</p>
+<p>Наследуется от GenomicDataReader и предоставляет методы для чтения,
+анализа и фильтрации данных выравнивания из SAM-файлов.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.filepath">
+<span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#sam_analyzer.SamReader.filepath" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Путь к SAM-файлу</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#sam_analyzer.SamReader.file" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Файловый объект для чтения данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>IO</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.header">
+<span class="sig-name descname"><span class="pre">header</span></span><a class="headerlink" href="#sam_analyzer.SamReader.header" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Заголовок SAM-файла, разобранный по тегам</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.calculate_coverage">
+<span class="sig-name descname"><span class="pre">calculate_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.calculate_coverage"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.calculate_coverage" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вычисляет покрытие для указанной хромосомы.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chrom</strong> – Название хромосомы для анализа</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Словарь где ключи - позиции в хромосоме,
+значения - количество прочитанных оснований в этой позиции</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.count_alignments">
+<span class="sig-name descname"><span class="pre">count_alignments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.count_alignments"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.count_alignments" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Подсчитывает общее количество выравниваний в файле.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Количество валидных записей выравнивания</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.filter_alignments">
+<span class="sig-name descname"><span class="pre">filter_alignments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.AlignmentRecordSam" title="record_sam.AlignmentRecordSam"><span class="pre">AlignmentRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.filter_alignments"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.filter_alignments" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Фильтрует выравнивания по флагу SAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>flag</strong> – SAM-флаг для фильтрации (битовая маска)</p>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>Записи выравнивания, удовлетворяющие критерию флага</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.filter_by_region">
+<span class="sig-name descname"><span class="pre">filter_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.AlignmentRecordSam" title="record_sam.AlignmentRecordSam"><span class="pre">AlignmentRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.filter_by_region"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.filter_by_region" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Фильтрует выравнивания по геномному региону.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Хромосома</p></li>
+<li><p><strong>start</strong> – Начальная позиция региона (1-based)</p></li>
+<li><p><strong>end</strong> – Конечная позиция региона (1-based)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>Записи выравнивания, пересекающие указанный регион</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.filter_records">
+<span class="sig-name descname"><span class="pre">filter_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.AlignmentRecordSam" title="record_sam.AlignmentRecordSam"><span class="pre">AlignmentRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.filter_records"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.filter_records" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Универсальный метод фильтрации записей по различным критериям.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**filters</strong> – Ключевые аргументы для фильтрации:
+- chrom: фильтр по хромосоме
+- min_mapq: минимальное качество маппинга
+- flag: SAM-флаг для фильтрации</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Список отфильтрованных записей AlignmentRecord</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.get_chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список всех хромосом, присутствующих в выравниваниях.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Отсортированный список уникальных названий хромосом</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.get_header">
+<span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.get_header"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.get_header" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает заголовок SAM-файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Словарь с ключами - тегами заголовка (например, <a class="reference external" href="mailto:'&#37;&#52;&#48;SQ">„<span>&#64;</span>SQ</a>“, <a class="reference external" href="mailto:'&#37;&#52;&#48;RG">„<span>&#64;</span>RG</a>“)
+и значениями - списками соответствующих данных</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.get_records_in_region">
+<span class="sig-name descname"><span class="pre">get_records_in_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.AlignmentRecordSam" title="record_sam.AlignmentRecordSam"><span class="pre">AlignmentRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.get_records_in_region"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.get_records_in_region" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получает все записи выравнивания в указанном регионе.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Хромосома</p></li>
+<li><p><strong>start</strong> – Начальная позиция региона</p></li>
+<li><p><strong>end</strong> – Конечная позиция региона</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Список объектов AlignmentRecord в регионе</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_sam.AlignmentRecordSam" title="record_sam.AlignmentRecordSam"><span class="pre">AlignmentRecordSam</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основной метод для чтения записей выравнивания из SAM-файла.</p>
+<p>Пропускает строки заголовка и записи с некорректными данными.
+Генерирует объекты AlignmentRecord для каждой валидной записи.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>AlignmentRecord</em> – Объект с данными выравнивания</p>
+</dd>
+</dl>
+<p class="rubric">Заметки</p>
+<ul class="simple">
+<li><p>Пропускает записи где RNAME или CIGAR равны „*“</p></li>
+<li><p>Автоматически вычисляет конечную позицию выравнивания</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.stats_by_chromosome">
+<span class="sig-name descname"><span class="pre">stats_by_chromosome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.stats_by_chromosome"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.stats_by_chromosome" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Статистика по количеству выравниваний на хромосому.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>chrom: название хромосомы</p></li>
+<li><p>count: количество выравниваний</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame с колонками</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sam_analyzer.SamReader.validate_coordinate">
+<span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/sam_analyzer.html#SamReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#sam_analyzer.SamReader.validate_coordinate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет валидность геномной координаты.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Название хромосомы</p></li>
+<li><p><strong>pos</strong> – Позиция на хромосоме</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True если хромосома существует и позиция положительна</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function" id="module-demo_sam">
+<dt class="sig sig-object py" id="demo_sam.test_sam">
+<span class="sig-prename descclassname"><span class="pre">demo_sam.</span></span><span class="sig-name descname"><span class="pre">test_sam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/demo_sam.html#test_sam"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#demo_sam.test_sam" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Выполняет базовую проверку работы SAM ридера на указанном файле.</p>
+<p>Эта функция тестирует основные возможности чтения SAM/BAM файлов:
+- Чтение заголовка файла
+- Подсчет количества выравниваний
+- Получение списка хромосом
+- Чтение первой записи для проверки формата данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Путь к SAM/BAM файлу для тестирования</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – Выводит любые ошибки, возникшие при работе с файлом</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="vcf">
+<h2>Анализатор файлов в формате VCF<a class="headerlink" href="#vcf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Данный анализатор предназначен для работы с данными генома в формате VCF. Он анализирует VCF файл и выводит следующие данные о файле:</p>
+<ul class="simple">
+<li><p>заголовок и информация по отдельным группам заголовков</p></li>
+<li><p>количество вариантов</p></li>
+<li><p>статистику “количество вариантов - регион”</p></li>
+<li><p>варианты, лежащие в определенном геномном отрезке</p></li>
+</ul>
+<dl class="py class" id="module-abstract_vcf">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_vcf.</span></span><span class="sig-name descname"><span class="pre">GenomicDataReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_vcf.Reader" title="abstract_vcf.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a></p>
+<p>Абстрактный класс для ридеров структурированных геномных данных.</p>
+<p>Предназначен для форматов SAM, VCF и других, содержащих аннотированные
+геномные варианты или выравнивания. Поддерживает работу с хромосомами,
+регионами и фильтрацию записей.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader._header_parsed">
+<span class="sig-name descname"><span class="pre">_header_parsed</span></span><a class="headerlink" href="#abstract_vcf.GenomicDataReader._header_parsed" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Флаг, указывающий был ли распарсен заголовок</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader._chromosomes">
+<span class="sig-name descname"><span class="pre">_chromosomes</span></span><a class="headerlink" href="#abstract_vcf.GenomicDataReader._chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список хромосом, обнаруженных в файле</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="simple">
+<dt>Inherits:</dt><dd><p>Reader: Базовый класс ридера</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Закрывает файл и сбрасывает состояние парсера.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.filter_records">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><span class="pre">RecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.filter_records"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.filter_records" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Фильтрация записей по различным критериям.</p>
+<p>Конкретные критерии фильтрации зависят от формата файла и должны
+быть реализованы в дочерних классах.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**filters</strong> – Ключевые аргументы с критериями фильтрации.
+Пример: quality=20, type=“SNV“, chromosome=“chr1“</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Итератор отфильтрованных записей</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При некорректных критериях фильтрации</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.get_chromosome_length">
+<span class="sig-name descname"><span class="pre">get_chromosome_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.get_chromosome_length"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.get_chromosome_length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить длину хромосомы (если доступно из заголовка).</p>
+<p>Базовая реализация возвращает None. Должна быть переопределена
+в дочерних классах, если информация о длинах хромосом доступна.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chrom</strong> – Идентификатор хромосомы</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Длина хромосомы в парах оснований или 0 если неизвестно</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.get_chromosomes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.get_chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список хромосом, представленных в файле.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Список идентификаторов хромосом (например, [„chr1“, „chr2“, …])</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.get_records_in_region">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_records_in_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><span class="pre">RecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.get_records_in_region"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.get_records_in_region" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает записи, попадающие в указанный геномный регион.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Идентификатор хромосомы</p></li>
+<li><p><strong>start</strong> – Начальная позиция региона (включительно, 1-based)</p></li>
+<li><p><strong>end</strong> – Конечная позиция региона (включительно, 1-based)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Итератор записей в указанном регионе</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При некорректных координатах или неизвестной хромосоме</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.get_statistics"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.get_statistics" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает базовую статистику по файлу.</p>
+<p>Должна быть расширена в дочерних классах для предоставления
+специфичной для формата статистики.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Словарь со статистикой, содержащий:</dt><dd><ul class="simple">
+<li><p>file_path (str): Путь к файлу</p></li>
+<li><p>file_size (int): Размер файла в байтах</p></li>
+<li><p>chromosomes (List[str]): Список хромосом</p></li>
+<li><p>chromosome_count (int): Количество хромосом</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><span class="pre">RecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Чтение записей с пропуском заголовочных строк.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор по объектам Record</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Record</em> – Объекты, представляющие геномные записи (варианты, выравнивания)</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – При нарушении формата данных</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.GenomicDataReader.validate_coordinate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#GenomicDataReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.GenomicDataReader.validate_coordinate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет корректность координат.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chrom</strong> – Идентификатор хромосомы</p></li>
+<li><p><strong>pos</strong> – Позиция на хромосоме (1-based)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True если координаты корректны, иначе False</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_vcf.Reader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_vcf.</span></span><span class="sig-name descname"><span class="pre">Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#Reader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.Reader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный базовый класс для всех ридеров геномных данных.</p>
+<p>Предоставляет общий интерфейс и базовую функциональность для чтения
+файлов различных форматов. Реализует контекстный менеджер для безопасной
+работы с файлами.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_vcf.Reader.filepath">
+<span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#abstract_vcf.Reader.filepath" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Путь к файлу для чтения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="abstract_vcf.Reader.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#abstract_vcf.Reader.file" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Файловый объект, открытый для чтения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FileIO | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.Reader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#Reader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.Reader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Безопасно закрывает файл, если он открыт.</p>
+<p>Метод идемпотентен - многократный вызов не вызывает ошибок.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.Reader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><span class="pre">RecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#Reader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.Reader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Абстрактный метод для чтения записей из файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор, возвращающий объекты Record</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Record]</p>
+</dd>
+<dt class="field-odd">Исключение<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>IOError</strong> – При ошибках чтения файла</p></li>
+<li><p><strong>ValueError</strong> – При ошибках парсинга данных</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_vcf.SequenceReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">abstract_vcf.</span></span><span class="sig-name descname"><span class="pre">SequenceReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#SequenceReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.SequenceReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_vcf.Reader" title="abstract_vcf.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a></p>
+<p>Абстрактный класс для ридеров последовательностей (FASTA, FASTQ).</p>
+<p>Предназначен для работы с файлами, содержащими биологические
+последовательности (нуклеотидные или аминокислотные).</p>
+<dl class="simple">
+<dt>Inherits:</dt><dd><p>Reader: Базовый класс ридера</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.SequenceReader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/abstract_vcf.html#SequenceReader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.SequenceReader.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Закрывает открытый файл.</p>
+<p>Рекомендуется использовать контекстный менеджер (with)
+для автоматического управления ресурсами.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.SequenceReader.get_sequence">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#record_vcf.SequenceRecordVcf" title="record_vcf.SequenceRecordVcf"><span class="pre">SequenceRecordVcf</span></a></span></span><a class="reference internal" href="_modules/abstract_vcf.html#SequenceReader.get_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.SequenceReader.get_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создаёт объект SequenceRecord из идентификатора и последовательности.</p>
+<p>В зависимости от формата (FASTA/FASTQ) может добавлять дополнительную
+информацию, такую как качество последовательности.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> – Строка с последовательностью (нуклеотиды или аминокислоты)</p></li>
+<li><p><strong>id</strong> – Идентификатор последовательности</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Объект с последовательностью и метаданными</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SequenceRecord</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Если последовательность содержит некорректные символы</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.SequenceReader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.SequenceRecordVcf" title="record_vcf.SequenceRecordVcf"><span class="pre">SequenceRecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#SequenceReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.SequenceReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Абстрактный метод для чтения последовательностей из файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Итератор объектов SequenceRecord</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[SequenceRecord]</p>
+</dd>
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>SequenceRecord</em> – Объекты, содержащие последовательности и метаданные</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – При нарушении формата файла</p></li>
+<li><p><strong>IOError</strong> – При ошибках чтения файла</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_vcf.SequenceReader.validate_sequence">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/abstract_vcf.html#SequenceReader.validate_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#abstract_vcf.SequenceReader.validate_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет корректность последовательности.</p>
+<p>Валидация зависит от типа последовательности (ДНК, РНК, белок).
+Проверяет допустимые символы и возможные дополнительные правила.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seq</strong> – Последовательность для валидации</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True если последовательность корректна, иначе False</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-record_vcf">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_vcf.</span></span><span class="sig-name descname"><span class="pre">AlignmentRecordVcf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cigar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_vcf.html#AlignmentRecordVcf"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_vcf.AlignmentRecordVcf" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordVcf</span></code></a></p>
+<p>Класс для хранения записей выравнивания в формате SAM/BAM.</p>
+<p>Содержит информацию о позиции выравнивания последовательности
+на референсный геном и параметрах качества выравнивания.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.chrom">
+<span class="sig-name descname"><span class="pre">chrom</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.chrom" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Название хромосомы/контига референсного генома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция начала выравнивания (0-based индексация)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.cigar">
+<span class="sig-name descname"><span class="pre">cigar</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.cigar" title="Ссылка на это определение">¶</a></dt>
+<dd><p>CIGAR строка, описывающая соответствие между последовательностью
+и референсом (M - match, I - insertion, D - deletion и т.д.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.mapq">
+<span class="sig-name descname"><span class="pre">mapq</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.mapq" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Качество выравнивания (Mapping Quality)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.end" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция конца выравнивания (вычисляется автоматически)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.AlignmentRecordVcf.flag">
+<span class="sig-name descname"><span class="pre">flag</span></span><a class="headerlink" href="#record_vcf.AlignmentRecordVcf.flag" title="Ссылка на это определение">¶</a></dt>
+<dd><p>SAM флаг выравнивания (по умолчанию 0)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aln</span> <span class="o">=</span> <span class="n">AlignmentRecordVcf</span><span class="p">(</span><span class="s2">&quot;read1&quot;</span><span class="p">,</span> <span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;50M&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aln</span><span class="p">)</span>
+<span class="go">&lt;AlignmentRecordVcf id=read1, chr1:1000-1050, MAPQ=60, FLAG=0&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_vcf.RecordVcf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_vcf.</span></span><span class="sig-name descname"><span class="pre">RecordVcf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_vcf.html#RecordVcf"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_vcf.RecordVcf" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Базовый класс для хранения биологических данных с идентификатором.</p>
+<p>Используется как родительский класс для различных типов биологических записей.
+Содержит минимальную общую информацию - идентификатор записи.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.RecordVcf.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#record_vcf.RecordVcf.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Уникальный идентификатор записи в исходном файле данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">RecordVcf</span><span class="p">(</span><span class="s2">&quot;seq1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+<span class="go">&lt;RecordVcf id=seq1&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_vcf.SequenceRecordVcf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_vcf.</span></span><span class="sig-name descname"><span class="pre">SequenceRecordVcf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_vcf.html#SequenceRecordVcf"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_vcf.SequenceRecordVcf" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordVcf</span></code></a></p>
+<p>Класс для хранения последовательностей в форматах FASTA/FASTQ.</p>
+<p>Наследует от RecordVcf и добавляет информацию о биологической
+последовательности и качестве оснований.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.SequenceRecordVcf.sequence">
+<span class="sig-name descname"><span class="pre">sequence</span></span><a class="headerlink" href="#record_vcf.SequenceRecordVcf.sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Биологическая последовательность (нуклеотиды или аминокислоты)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.SequenceRecordVcf.quality">
+<span class="sig-name descname"><span class="pre">quality</span></span><a class="headerlink" href="#record_vcf.SequenceRecordVcf.quality" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список значений качества для каждого символа последовательности
+в формате Phred (только для FASTQ). None для FASTA записей.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<p>FASTA запись:
+&gt;&gt;&gt; seq_rec = SequenceRecordVcf(«seq1», «ATCG»)
+&gt;&gt;&gt; print(seq_rec.sequence)
+ATCG</p>
+<p>FASTQ запись:
+&gt;&gt;&gt; qual = [40, 40, 39, 38]
+&gt;&gt;&gt; fastq_rec = SequenceRecordVcf(«read1», «ATCG», qual)
+&gt;&gt;&gt; print(fastq_rec.quality)
+[40, 40, 39, 38]</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">record_vcf.</span></span><span class="sig-name descname"><span class="pre">VariantRecordVcf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/record_vcf.html#VariantRecordVcf"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#record_vcf.VariantRecordVcf" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#record_vcf.RecordVcf" title="record_vcf.RecordVcf"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecordVcf</span></code></a></p>
+<p>Класс для хранения генетических вариантов в формате VCF.</p>
+<p>Содержит информацию о позиции варианта, референсном и альтернативном
+аллелях, а также дополнительную информацию в формате словаря.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf.chrom">
+<span class="sig-name descname"><span class="pre">chrom</span></span><a class="headerlink" href="#record_vcf.VariantRecordVcf.chrom" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Название хромосомы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#record_vcf.VariantRecordVcf.pos" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Позиция варианта (1-based)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf.ref">
+<span class="sig-name descname"><span class="pre">ref</span></span><a class="headerlink" href="#record_vcf.VariantRecordVcf.ref" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Референсный аллель</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf.alt">
+<span class="sig-name descname"><span class="pre">alt</span></span><a class="headerlink" href="#record_vcf.VariantRecordVcf.alt" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Альтернативный аллель</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="record_vcf.VariantRecordVcf.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#record_vcf.VariantRecordVcf.info" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Словарь с дополнительной информацией о варианте
+(соответствует полю INFO в VCF)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;DP&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;AF&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var</span> <span class="o">=</span> <span class="n">VariantRecordVcf</span><span class="p">(</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="mi">123456</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="go">&lt;VariantRecordVcf chr1:123456 A&gt;T&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-vcf_analyzer">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vcf_analyzer.</span></span><span class="sig-name descname"><span class="pre">VcfReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#abstract_vcf.GenomicDataReader" title="abstract_vcf.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Реализация ридера для файлов в формате VCF (Variant Call Format).</p>
+<p>VCF - стандартный формат для хранения геномных вариаций, содержащий
+информацию о хромосоме, позиции, референсном и альтернативном аллелях,
+качестве вызова и дополнительных аннотациях.</p>
+<p>Наследует от абстрактного класса GenomicDataReader и реализует
+специфичную для VCF логику парсинга и анализа данных.</p>
+<dl class="simple">
+<dt>Атрибуты:</dt><dd><p>headers (List[str]): Список строк заголовка VCF файла
+samples (List[str]): Список образцов (индивидуумов) из VCF файла
+_variants_count (int): Счетчик вариантов (для внутреннего использования)
+_header_parsed (bool): Флаг, указывающий был ли распарсен заголовок</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.get_chromosomes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список уникальных хромосом, представленных в файле.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Отсортированный список названий хромосом</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Примечание:</dt><dd><p>Для больших файлов может быть затратной операцией,
+так требует полного прохода по файлу.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.get_region_stats">
+<span class="sig-name descname"><span class="pre">get_region_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.get_region_stats"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.get_region_stats" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает распределение вариантов по хромосомам.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>DataFrame с колонками:</dt><dd><ul class="simple">
+<li><p>chromosome: название хромосомы</p></li>
+<li><p>variant_count: количество вариантов на хромосоме</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Использование:</dt><dd><p>stats_df = reader.get_region_stats()
+print(stats_df)  # Показывает таблицу с распределением</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.get_statistics"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.get_statistics" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает базовую статистику по VCF файлу.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Словарь со статистикой:</dt><dd><ul class="simple">
+<li><p>total_variants: общее количество вариантов</p></li>
+<li><p>samples_count: количество образцов</p></li>
+<li><p>header_lines: количество строк в заголовке</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.get_variant_type_stats">
+<span class="sig-name descname"><span class="pre">get_variant_type_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.get_variant_type_stats"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.get_variant_type_stats" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Анализирует и возвращает статистику по типам геномных вариантов.</p>
+<dl class="simple">
+<dt>Классификация вариантов:</dt><dd><ul class="simple">
+<li><p>SNV (Single Nucleotide Variant): одинарные нуклеотидные замены</p></li>
+<li><p>Insertion: вставки (REF короче ALT)</p></li>
+<li><p>Deletion: делеции (REF длиннее ALT)</p></li>
+<li><p>Complex: сложные варианты (равная длина, но разные последовательности)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>DataFrame с колонками:</dt><dd><ul class="simple">
+<li><p>variant_type: тип варианта</p></li>
+<li><p>count: количество вариантов этого типа</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#record_vcf.VariantRecordVcf" title="record_vcf.VariantRecordVcf"><span class="pre">VariantRecordVcf</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основной метод чтения вариантов из VCF файла.</p>
+<p>Генератор, который последовательно читает и парсит варианты из файла,
+возвращая объекты VariantRecord для каждой валидной строки с вариантом.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>VariantRecord</em> – Объект, содержащий информацию о геномном варианте</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Если файл не был открыт перед чтением</p>
+</dd>
+</dl>
+<p>Процесс:
+1. Пропускает все заголовочные строки
+2. Читает файл построчно
+3. Для каждой не-пустой и не-заголовочной строки вызывает _parse_variant_line()
+4. Увеличивает счетчик вариантов для каждого успешно распарсенного варианта</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vcf_analyzer.VcfReader.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vcf_analyzer.html#VcfReader.reset"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#vcf_analyzer.VcfReader.reset" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сбрасывает состояние ридера к начальному.</p>
+<dl class="simple">
+<dt>Действия:</dt><dd><ul class="simple">
+<li><p>Перемещает позицию чтения файла в начало</p></li>
+<li><p>Перепарсивает заголовок файла</p></li>
+<li><p>Сбрасывает внутренние счетчики и состояния</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function" id="module-demo_vcf">
+<dt class="sig sig-object py" id="demo_vcf.demo_vcf">
+<span class="sig-prename descclassname"><span class="pre">demo_vcf.</span></span><span class="sig-name descname"><span class="pre">demo_vcf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/demo_vcf.html#demo_vcf"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#demo_vcf.demo_vcf" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Демонстрационная функция для работы с VCF файлами.</p>
+<p>Основной поток выполнения:
+1. Запрашивает путь к VCF файлу у пользователя
+2. Проверяет существование файла
+3. Читает и анализирует файл с помощью VcfReader
+4. Выводит статистику и примеры вариантов</p>
+<p>Исключения:
+- FileNotFoundError: если файл не существует
+- Exception: любые ошибки при чтении/парсинге VCF файла</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="demo_vcf.format_info_preview">
+<span class="sig-prename descclassname"><span class="pre">demo_vcf.</span></span><span class="sig-name descname"><span class="pre">format_info_preview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/demo_vcf.html#format_info_preview"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#demo_vcf.format_info_preview" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форматирует поля INFO для компактного отображения.</p>
+<dl class="simple">
+<dt>Аргументы:</dt><dd><p>info_dict (dict): Словарь с информацией о генетическом варианте</p>
+</dd>
+<dt>Возвращает:</dt><dd><p>str: Отформатированная строка с ключевой информацией</p>
+</dd>
+</dl>
+<p>Логика форматирования:
+- Для флаговых значений (True) выводится только ключ
+- Для пар ключ-значение выводится в формате «ключ=значение»
+- Ограничивается вывод первыми 3 полями
+- Добавляется указатель на наличие дополнительных полей</p>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="plots.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Графики</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="sequence_data_analyzer.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Анализатор последовательностей</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Tsarkov Alexander, Shabalin Artyom, Lipinskaya Alyona, Shkuratova Valentina
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Анализатор данных генома</a><ul>
+<li><a class="reference internal" href="#sam">Анализатор файлов в формате SAM</a><ul>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader._header_parsed"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader._header_parsed</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader._chromosomes"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader._chromosomes</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.close"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.filter_records"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.filter_records()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.get_chromosome_length"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_chromosome_length()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.get_chromosomes"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_chromosomes()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.get_records_in_region"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_records_in_region()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.get_statistics"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_statistics()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.read"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.GenomicDataReader.validate_coordinate"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.validate_coordinate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abstract_sam.Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_sam.Reader.filepath"><code class="docutils literal notranslate"><span class="pre">Reader.filepath</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.Reader.file"><code class="docutils literal notranslate"><span class="pre">Reader.file</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.Reader.close"><code class="docutils literal notranslate"><span class="pre">Reader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.Reader.read"><code class="docutils literal notranslate"><span class="pre">Reader.read()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abstract_sam.SequenceReader"><code class="docutils literal notranslate"><span class="pre">SequenceReader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_sam.SequenceReader.close"><code class="docutils literal notranslate"><span class="pre">SequenceReader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.SequenceReader.get_sequence"><code class="docutils literal notranslate"><span class="pre">SequenceReader.get_sequence()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.SequenceReader.read"><code class="docutils literal notranslate"><span class="pre">SequenceReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_sam.SequenceReader.validate_sequence"><code class="docutils literal notranslate"><span class="pre">SequenceReader.validate_sequence()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam</span></code></a><ul>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.chrom"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.chrom</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.start"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.start</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.cigar"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.cigar</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.mapq"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.mapq</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.end"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.end</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.AlignmentRecordSam.flag"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordSam.flag</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_sam.RecordSam"><code class="docutils literal notranslate"><span class="pre">RecordSam</span></code></a><ul>
+<li><a class="reference internal" href="#record_sam.RecordSam.id"><code class="docutils literal notranslate"><span class="pre">RecordSam.id</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_sam.SequenceRecordSam"><code class="docutils literal notranslate"><span class="pre">SequenceRecordSam</span></code></a><ul>
+<li><a class="reference internal" href="#record_sam.SequenceRecordSam.sequence"><code class="docutils literal notranslate"><span class="pre">SequenceRecordSam.sequence</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.SequenceRecordSam.quality"><code class="docutils literal notranslate"><span class="pre">SequenceRecordSam.quality</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam</span></code></a><ul>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam.chrom"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam.chrom</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam.pos"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam.pos</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam.ref"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam.ref</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam.alt"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam.alt</span></code></a></li>
+<li><a class="reference internal" href="#record_sam.VariantRecordSam.info"><code class="docutils literal notranslate"><span class="pre">VariantRecordSam.info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader"><code class="docutils literal notranslate"><span class="pre">SamReader</span></code></a><ul>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.filepath"><code class="docutils literal notranslate"><span class="pre">SamReader.filepath</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.file"><code class="docutils literal notranslate"><span class="pre">SamReader.file</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.header"><code class="docutils literal notranslate"><span class="pre">SamReader.header</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.calculate_coverage"><code class="docutils literal notranslate"><span class="pre">SamReader.calculate_coverage()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.count_alignments"><code class="docutils literal notranslate"><span class="pre">SamReader.count_alignments()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.filter_alignments"><code class="docutils literal notranslate"><span class="pre">SamReader.filter_alignments()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.filter_by_region"><code class="docutils literal notranslate"><span class="pre">SamReader.filter_by_region()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.filter_records"><code class="docutils literal notranslate"><span class="pre">SamReader.filter_records()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.get_chromosomes"><code class="docutils literal notranslate"><span class="pre">SamReader.get_chromosomes()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.get_header"><code class="docutils literal notranslate"><span class="pre">SamReader.get_header()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.get_records_in_region"><code class="docutils literal notranslate"><span class="pre">SamReader.get_records_in_region()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.read"><code class="docutils literal notranslate"><span class="pre">SamReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.stats_by_chromosome"><code class="docutils literal notranslate"><span class="pre">SamReader.stats_by_chromosome()</span></code></a></li>
+<li><a class="reference internal" href="#sam_analyzer.SamReader.validate_coordinate"><code class="docutils literal notranslate"><span class="pre">SamReader.validate_coordinate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#demo_sam.test_sam"><code class="docutils literal notranslate"><span class="pre">test_sam()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vcf">Анализатор файлов в формате VCF</a><ul>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader._header_parsed"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader._header_parsed</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader._chromosomes"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader._chromosomes</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.close"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.filter_records"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.filter_records()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.get_chromosome_length"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_chromosome_length()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.get_chromosomes"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_chromosomes()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.get_records_in_region"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_records_in_region()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.get_statistics"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.get_statistics()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.read"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.GenomicDataReader.validate_coordinate"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader.validate_coordinate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abstract_vcf.Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_vcf.Reader.filepath"><code class="docutils literal notranslate"><span class="pre">Reader.filepath</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.Reader.file"><code class="docutils literal notranslate"><span class="pre">Reader.file</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.Reader.close"><code class="docutils literal notranslate"><span class="pre">Reader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.Reader.read"><code class="docutils literal notranslate"><span class="pre">Reader.read()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abstract_vcf.SequenceReader"><code class="docutils literal notranslate"><span class="pre">SequenceReader</span></code></a><ul>
+<li><a class="reference internal" href="#abstract_vcf.SequenceReader.close"><code class="docutils literal notranslate"><span class="pre">SequenceReader.close()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.SequenceReader.get_sequence"><code class="docutils literal notranslate"><span class="pre">SequenceReader.get_sequence()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.SequenceReader.read"><code class="docutils literal notranslate"><span class="pre">SequenceReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#abstract_vcf.SequenceReader.validate_sequence"><code class="docutils literal notranslate"><span class="pre">SequenceReader.validate_sequence()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf</span></code></a><ul>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.chrom"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.chrom</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.start"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.start</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.cigar"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.cigar</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.mapq"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.mapq</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.end"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.end</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.AlignmentRecordVcf.flag"><code class="docutils literal notranslate"><span class="pre">AlignmentRecordVcf.flag</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_vcf.RecordVcf"><code class="docutils literal notranslate"><span class="pre">RecordVcf</span></code></a><ul>
+<li><a class="reference internal" href="#record_vcf.RecordVcf.id"><code class="docutils literal notranslate"><span class="pre">RecordVcf.id</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_vcf.SequenceRecordVcf"><code class="docutils literal notranslate"><span class="pre">SequenceRecordVcf</span></code></a><ul>
+<li><a class="reference internal" href="#record_vcf.SequenceRecordVcf.sequence"><code class="docutils literal notranslate"><span class="pre">SequenceRecordVcf.sequence</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.SequenceRecordVcf.quality"><code class="docutils literal notranslate"><span class="pre">SequenceRecordVcf.quality</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf</span></code></a><ul>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf.chrom"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf.chrom</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf.pos"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf.pos</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf.ref"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf.ref</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf.alt"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf.alt</span></code></a></li>
+<li><a class="reference internal" href="#record_vcf.VariantRecordVcf.info"><code class="docutils literal notranslate"><span class="pre">VariantRecordVcf.info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader"><code class="docutils literal notranslate"><span class="pre">VcfReader</span></code></a><ul>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.get_chromosomes"><code class="docutils literal notranslate"><span class="pre">VcfReader.get_chromosomes()</span></code></a></li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.get_region_stats"><code class="docutils literal notranslate"><span class="pre">VcfReader.get_region_stats()</span></code></a></li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.get_statistics"><code class="docutils literal notranslate"><span class="pre">VcfReader.get_statistics()</span></code></a></li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.get_variant_type_stats"><code class="docutils literal notranslate"><span class="pre">VcfReader.get_variant_type_stats()</span></code></a></li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.read"><code class="docutils literal notranslate"><span class="pre">VcfReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#vcf_analyzer.VcfReader.reset"><code class="docutils literal notranslate"><span class="pre">VcfReader.reset()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#demo_vcf.demo_vcf"><code class="docutils literal notranslate"><span class="pre">demo_vcf()</span></code></a></li>
+<li><a class="reference internal" href="#demo_vcf.format_info_preview"><code class="docutils literal notranslate"><span class="pre">format_info_preview()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/translations.js?v=5b699b7f"></script>
+    </body>
+</html>
